@@ -59,99 +59,50 @@ export default function Dashboard() {
         {result ? (
           <ResultsDashboard data={result} onReset={() => setResult(null)} />
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: '420px 1fr', gap: '2.5rem', alignItems: 'start' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4rem' }}>
 
-            {/* Left: upload panel */}
+            {/* Centered Upload Panel */}
             <div
               className="card fade-up fade-up-d1"
               style={{
-                position: 'sticky', top: '90px',
+                width: '100%', maxWidth: '800px',
                 border: '1px solid var(--border-active)',
                 boxShadow: 'var(--shadow-glow)',
               }}
             >
-              <h2 style={{ marginBottom: '1.5rem', fontSize: '1.2rem' }}>
+              <h2 style={{ marginBottom: '1.5rem', fontSize: '1.2rem', textAlign: 'center' }}>
                 Upload Document
               </h2>
               <UploadWithFace onResult={setResult} />
             </div>
 
-            {/* Right: feature grid */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <div
-                className="fade-up fade-up-d2"
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))',
-                  gap: '1rem',
-                }}
-              >
-                {FEATURES.map((f, i) => (
-                  <div
-                    key={f.title}
-                    className="card fade-up"
-                    style={{ animationDelay: `${0.1 + i * 0.07}s` }}
-                  >
-                    <div style={{ fontSize: '1.75rem', marginBottom: '0.75rem' }}>{f.icon}</div>
-                    <h3 style={{ fontSize: '0.95rem', marginBottom: '0.4rem' }}>{f.title}</h3>
-                    <p className="text-secondary text-sm" style={{ lineHeight: 1.6 }}>{f.desc}</p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Backend status card */}
-              <div
-                className="card fade-up fade-up-d3"
-                style={{
-                  padding: '1.25rem 1.5rem',
-                  border: backendOk === false ? '1px solid rgba(239,68,68,0.3)' : '1px solid var(--border)',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <span style={{ fontSize: '1.4rem' }}>
-                    {backendOk === null ? '⏳' : backendOk ? '🟢' : '🔴'}
-                  </span>
-                  <div>
-                    <p style={{ fontWeight: 600, fontSize: '0.9rem' }}>
-                      {backendOk === null ? 'Checking backend…'
-                        : backendOk ? 'Backend API is online'
-                        : 'Backend API is offline'}
-                    </p>
-                    <p className="text-secondary text-xs mt-1">
-                      {backendOk
-                        ? 'FastAPI server running on localhost:8000 — ready to verify.'
-                        : 'Start the backend: cd backend && uvicorn app:app --reload --port 8000'}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick-start code snippet */}
-              <div className="card fade-up" style={{ padding: '1.25rem' }}>
-                <p className="text-muted text-xs font-semibold" style={{ textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.75rem' }}>
-                  Quick Start
-                </p>
-                <pre
-                  className="mono"
-                  style={{
-                    fontSize: '0.8rem', lineHeight: 1.7, color: 'var(--text-secondary)',
-                    background: 'var(--bg-base)', borderRadius: 'var(--radius-sm)',
-                    padding: '1rem', overflowX: 'auto', margin: 0,
+            {/* Bottom Features Grid (2 rows of 3) */}
+            <div
+              className="fade-up fade-up-d2"
+              style={{
+                width: '100%', maxWidth: '960px',
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '1.25rem',
+              }}
+            >
+              {FEATURES.map((f, i) => (
+                <div
+                  key={f.title}
+                  className="card fade-up"
+                  style={{ 
+                    animationDelay: `${0.1 + i * 0.07}s`, 
+                    textAlign: 'center', 
+                    padding: '1.5rem 1rem' 
                   }}
                 >
-{`# Install & run backend
-cd backend
-pip install -r requirements.txt
-uvicorn app:app --reload --port 8000
-
-# Run tests
-pytest tests/ -v --cov=.
-
-# Start frontend (this tab)
-cd frontend && npm run dev`}
-                </pre>
-              </div>
+                  <div style={{ fontSize: '2rem', marginBottom: '0.75rem' }}>{f.icon}</div>
+                  <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem' }}>{f.title}</h3>
+                  <p className="text-secondary text-sm" style={{ lineHeight: 1.5, margin: 0 }}>{f.desc}</p>
+                </div>
+              ))}
             </div>
+
           </div>
         )}
       </main>
