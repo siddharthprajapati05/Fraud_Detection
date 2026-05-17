@@ -80,10 +80,10 @@ export default function Dashboard() {
             <div
               className="fade-up fade-up-d2"
               style={{
-                width: '100%', maxWidth: '960px',
+                width: '100%', maxWidth: '800px',
                 display: 'grid',
                 gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '1.25rem',
+                gap: '1rem',
               }}
             >
               {FEATURES.map((f, i) => (
@@ -93,12 +93,12 @@ export default function Dashboard() {
                   style={{ 
                     animationDelay: `${0.1 + i * 0.07}s`, 
                     textAlign: 'center', 
-                    padding: '1.5rem 1rem' 
+                    padding: '1rem' 
                   }}
                 >
-                  <div style={{ fontSize: '2rem', marginBottom: '0.75rem' }}>{f.icon}</div>
-                  <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem' }}>{f.title}</h3>
-                  <p className="text-secondary text-sm" style={{ lineHeight: 1.5, margin: 0 }}>{f.desc}</p>
+                  <div style={{ fontSize: '1.5rem', marginBottom: '0.4rem' }}>{f.icon}</div>
+                  <h3 style={{ fontSize: '0.85rem', marginBottom: '0.3rem' }}>{f.title}</h3>
+                  <p className="text-secondary" style={{ lineHeight: 1.4, margin: 0, fontSize: '0.7rem' }}>{f.desc}</p>
                 </div>
               ))}
             </div>

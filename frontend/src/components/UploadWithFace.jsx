@@ -40,7 +40,7 @@ function FileDropzone({ label, icon, accept, file, onFile, color = 'var(--accent
               src={preview}
               alt="preview"
               style={{
-                maxHeight: 180, maxWidth: '100%',
+                maxHeight: 120, maxWidth: '100%',
                 objectFit: 'contain',
                 borderRadius: 'var(--radius-sm)',
                 marginBottom: '0.75rem',
@@ -119,25 +119,27 @@ export default function UploadWithFace({ onResult }) {
       </div>
 
       {/* ── Dropzones ─────────────────────────────────────────────── */}
-      <FileDropzone
-        id="doc-upload"
-        label="Step 1 — Upload ID Document"
-        icon="🪪"
-        file={docFile}
-        onFile={setDocFile}
-        color="var(--accent-2)"
-      />
-
-      {mode === 'face' && (
+      <div style={{ display: 'grid', gridTemplateColumns: mode === 'face' ? '1fr 1fr' : '1fr', gap: '1.5rem' }}>
         <FileDropzone
-          id="selfie-upload"
-          label="Step 2 — Upload Live Selfie"
-          icon="🤳"
-          file={selfieFile}
-          onFile={setSelfieFile}
-          color="var(--accent-green)"
+          id="doc-upload"
+          label="Step 1 — Upload ID Document"
+          icon="🪪"
+          file={docFile}
+          onFile={setDocFile}
+          color="var(--accent-2)"
         />
-      )}
+
+        {mode === 'face' && (
+          <FileDropzone
+            id="selfie-upload"
+            label="Step 2 — Upload Live Selfie"
+            icon="🤳"
+            file={selfieFile}
+            onFile={setSelfieFile}
+            color="var(--accent-green)"
+          />
+        )}
+      </div>
 
       {/* ── Error ─────────────────────────────────────────────────── */}
       {error && (
