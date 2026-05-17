@@ -123,3 +123,6 @@ pytest tests/ --cov=. --cov-report=html
 - **React 18** + Vite
 - **react-dropzone** (drag-and-drop)
 - **lucide-react** (icons)
+
+
+
